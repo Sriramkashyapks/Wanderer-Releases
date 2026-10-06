@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wanderer — Travel Knowledge & Active Trip Workspace</title>
   <meta name="description"
-    content="Download Wanderer APK: Offline-first travel knowledge system, active trip tracking, places rating, timeline scheduling, and trip notes." />
+    content="Download Wanderer APK v0.3: Cloud-synced travel workspace with Google & Supabase Auth, native Android intent filter deep linking, guest-to-user trip migration, and milestone itinerary planning." />
 
   <!-- Modern Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,6 +26,7 @@
       --accent: #38BDF8;
       --accent-glow: rgba(56, 189, 248, 0.25);
       --success: #10B981;
+      --warning: #F59E0B;
       --text-main: #F8FAFC;
       --text-muted: #94A3B8;
       --text-dim: #64748B;
@@ -188,7 +189,7 @@
     .hero-subtitle {
       font-size: clamp(16px, 2.5vw, 19px);
       color: var(--text-muted);
-      max-width: 680px;
+      max-width: 700px;
       margin: 0 auto 36px;
     }
 
@@ -277,13 +278,15 @@
     }
 
     .download-specs {
-      display: flex;
-      justify-content: space-around;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
       border-top: 1px solid var(--surface-border);
       padding-top: 20px;
       margin-top: 24px;
       font-size: 13px;
       color: var(--text-muted);
+      text-align: left;
     }
 
     .spec-item {
@@ -350,7 +353,6 @@
       justify-content: center;
       font-size: 22px;
       margin-bottom: 16px;
-      border: 1px solid var(--surface-border);
     }
 
     .feature-title {
@@ -366,7 +368,7 @@
       line-height: 1.5;
     }
 
-    /* Installation Steps */
+    /* Steps Section */
     .steps-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -378,26 +380,27 @@
       border: 1px solid var(--surface-border);
       border-radius: var(--radius-md);
       padding: 24px;
-      position: relative;
+      text-align: left;
     }
 
     .step-num {
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
-      background: var(--primary);
-      color: white;
+      background: var(--surface-elevated);
+      color: var(--accent);
+      font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
-      font-weight: 700;
       margin-bottom: 14px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
     }
 
     .step-title {
-      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
       font-size: 16px;
+      font-weight: 700;
       margin-bottom: 6px;
     }
 
@@ -406,48 +409,50 @@
       color: var(--text-muted);
     }
 
-    /* Changelog Accordion */
+    /* Changelog Section */
     .changelog-card {
       background: var(--surface);
       border: 1px solid var(--surface-border);
-      border-radius: var(--radius-md);
-      padding: 28px;
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 24px;
     }
 
     .changelog-header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
       border-bottom: 1px solid var(--surface-border);
     }
 
     .changelog-version {
       font-family: 'Outfit', sans-serif;
+      font-size: 20px;
       font-weight: 700;
-      font-size: 18px;
     }
 
     .changelog-list {
       list-style-type: none;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
 
     .changelog-list li {
+      position: relative;
+      padding-left: 24px;
       font-size: 14px;
       color: var(--text-muted);
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
     }
 
     .changelog-list li::before {
-      content: "✓";
-      color: var(--success);
-      font-weight: 800;
+      content: "•";
+      position: absolute;
+      left: 8px;
+      color: var(--accent);
+      font-weight: bold;
     }
 
     /* Footer */
@@ -483,8 +488,7 @@
       }
 
       .download-specs {
-        flex-direction: column;
-        gap: 12px;
+        grid-template-columns: 1fr 1fr;
       }
     }
   </style>
@@ -499,12 +503,12 @@
       <a href="#" class="brand">
         <div class="brand-icon">W</div>
         <span class="brand-name">Wanderer</span>
-        <span class="nav-badge">v1.0.0</span>
+        <span class="nav-badge">v0.3</span>
       </a>
       <div class="nav-actions">
         <a href="#changelog" class="btn-ghost">Changelog</a>
         <a href="#install" class="btn-ghost">Install Guide</a>
-        <a href="https://github.com/sriramkashyapks/Wanderer-Releases" target="_blank" class="btn-ghost">GitHub</a>
+        <a href="https://github.com/Sriramkashyapks/Wanderer-Releases" target="_blank" class="btn-ghost">GitHub</a>
       </div>
     </div>
   </header>
@@ -513,13 +517,12 @@
   <section class="hero">
     <div class="status-pill">
       <span class="status-dot"></span>
-      <span>Public Release v1.0.0-preview Available</span>
+      <span>Public Release v0.3 Available</span>
     </div>
 
-    <h1>Travel Knowledge & <br><span class="gradient-text">Active Trip Workspace</span></h1>
+    <h1>Travel Knowledge & <br><span class="gradient-text">Cloud-Synced Active Workspace</span></h1>
     <p class="hero-subtitle">
-      Capture places, rate experiences, organize milestone timeline events, and access emergency trip notes — built
-      local-first for no-network travels anywhere.
+      Capture places, rate experiences, schedule milestone timeline events, and access emergency trip notes — now fully patched with Native Android Intent Filters for Google OAuth deep linking.
     </p>
 
     <!-- Download Card -->
@@ -528,21 +531,21 @@
         <div class="version-info">
           <div class="version-title">
             Wanderer for Android
-            <span class="version-tag">APK</span>
+            <span class="version-tag">v0.3 APK</span>
           </div>
-          <div class="version-meta">Release v1.0.0 • Local-First Offline Edition</div>
+          <div class="version-meta">Release v0.3 • Native Intent Filter & Supabase Google OAuth Edition</div>
         </div>
       </div>
 
-      <!-- Direct APK Download Button (Links to GitHub Release or local file) -->
-      <a id="apkDownloadBtn" href="https://github.com/sriramkashyapks/Wanderer/releases/latest" class="cta-button">
+      <!-- Direct APK Download Button -->
+      <a id="apkDownloadBtn" href="releases/app-release-v0.3.apk" download="app-release-v0.3.apk" class="cta-button">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
           stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
           <polyline points="7 10 12 15 17 10"></polyline>
           <line x1="12" y1="15" x2="12" y2="3"></line>
         </svg>
-        Download Android APK (v1.0.0)
+        Download Android APK (v0.3)
       </a>
 
       <div class="download-specs">
@@ -552,7 +555,11 @@
         </div>
         <div class="spec-item">
           <span>Mode</span>
-          <span class="spec-value">Local-First (Offline Ready)</span>
+          <span class="spec-value">Hybrid (Offline + Cloud Sync)</span>
+        </div>
+        <div class="spec-item">
+          <span>Auth Support</span>
+          <span class="spec-value">Google OAuth / Guest Mode</span>
         </div>
         <div class="spec-item">
           <span>Format</span>
@@ -564,50 +571,56 @@
 
   <!-- Feature Highlights -->
   <section class="section">
-    <h2 class="section-title">Everything Built into V1.0</h2>
-    <p class="section-sub">A focused mobile workspace designed specifically for travellers.</p>
+    <h2 class="section-title">Everything Built into V0.3</h2>
+    <p class="section-sub">A focused mobile workspace designed specifically for modern travellers.</p>
 
     <div class="grid">
       <div class="feature-card">
+        <div class="feature-icon">📲</div>
+        <h3 class="feature-title">Native Android Scheme Filter</h3>
+        <p class="feature-text">Native <code>AndroidManifest.xml</code> BROWSABLE intent filter registering <code>wanderer://</code> deep link handler with the Android OS.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔐</div>
+        <h3 class="feature-title">Google & Supabase Auth</h3>
+        <p class="feature-text">Seamless 1-tap Google Sign-In with automatic deep-link event listener capturing tokens post-redirect.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <h3 class="feature-title">Automatic Guest Sync</h3>
+        <p class="feature-text">Start planning trips immediately without logging in. When you sign in, all local trips and itineraries instantly migrate to your account.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 class="feature-title">NestJS Auth Sync Guard</h3>
+        <p class="feature-text">Enterprise NestJS backend synchronization ensuring profile integrity, role context, and authenticated API access.</p>
+      </div>
+
+      <div class="feature-card">
         <div class="feature-icon">🧭</div>
-        <h3 class="feature-title">Multi-State Trips</h3>
-        <p class="feature-text">Track your journeys across full lifecycles: Idea, Planning, Upcoming, Active, and
-          Completed trips with custom date ranges.</p>
+        <h3 class="feature-title">Multi-State Trip Engine</h3>
+        <p class="feature-text">Track your journeys across full lifecycles: Idea, Planning, Upcoming, Active, and Completed trips with custom date ranges.</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon">📍</div>
         <h3 class="feature-title">Places & Knowledge</h3>
-        <p class="feature-text">Log temples, cafes, scenic viewpoints, and stays. Tag visited status, star ratings, and
-          personal tips.</p>
+        <p class="feature-text">Log temples, cafes, scenic viewpoints, and stays. Tag visited status, star ratings, and personal tips.</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon">⏱️</div>
         <h3 class="feature-title">Itinerary Timeline</h3>
-        <p class="feature-text">Chronological milestone event scheduling for flights, train transfers, and day-by-day
-          sightseeing with completion toggles.</p>
+        <p class="feature-text">Chronological milestone event scheduling for flights, train transfers, and day-by-day sightseeing with completion toggles.</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon">📝</div>
         <h3 class="feature-title">Emergency Notes</h3>
-        <p class="feature-text">Keep hotel reservation codes, driver contacts, packing lists, and wifi credentials right
-          at your fingertips.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <h3 class="feature-title">100% Offline Cache</h3>
-        <p class="feature-text">All trips and itinerary data are cached via AsyncStorage. Zero internet connection
-          required while in airplane mode.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🎨</div>
-        <h3 class="feature-title">Material 3 UI</h3>
-        <p class="feature-text">State-of-the-art Material 3 UI design system with oceanic dark mode, dynamic elevation
-          surfaces, and fluid micro-interactions.</p>
+        <p class="feature-text">Keep hotel reservation codes, driver contacts, packing lists, and wifi credentials right at your fingertips.</p>
       </div>
     </div>
   </section>
@@ -621,21 +634,19 @@
       <div class="step-card">
         <div class="step-num">1</div>
         <h4 class="step-title">Download APK</h4>
-        <p class="step-desc">Tap the <strong>Download APK</strong> button above on your Android phone browser.</p>
+        <p class="step-desc">Tap the <strong>Download APK (v0.3)</strong> button above on your Android phone browser.</p>
       </div>
 
       <div class="step-card">
         <div class="step-num">2</div>
         <h4 class="step-title">Allow Unknown Apps</h4>
-        <p class="step-desc">When prompted by Chrome/Android, tap <strong>Settings</strong> and switch on <em>"Allow
-            from this source"</em>.</p>
+        <p class="step-desc">When prompted by Chrome/Android, tap <strong>Settings</strong> and switch on <em>"Allow from this source"</em>.</p>
       </div>
 
       <div class="step-card">
         <div class="step-num">3</div>
         <h4 class="step-title">Open & Wander</h4>
-        <p class="step-desc">Tap <strong>Install</strong>. Once completed, open Wanderer and start creating your first
-          trip!</p>
+        <p class="step-desc">Tap <strong>Install</strong>. Once completed, open Wanderer, sign in with Google or continue as guest to start exploring!</p>
       </div>
     </div>
   </section>
@@ -643,12 +654,41 @@
   <!-- Release Changelog -->
   <section id="changelog" class="section">
     <h2 class="section-title">Version History & Updates</h2>
-    <p class="section-sub">Track release notes and upcoming features.</p>
+    <p class="section-sub">Track release notes and feature improvements.</p>
 
+    <!-- v0.3 -->
     <div class="changelog-card">
       <div class="changelog-header">
-        <span class="changelog-version">v1.0.0-preview (Latest)</span>
+        <span class="changelog-version">v0.3 (Latest Release - Oct 2026)</span>
         <span class="nav-badge">Current Release</span>
+      </div>
+      <ul class="changelog-list">
+        <li><strong>Native Android Manifest Intent-Filter:</strong> Configured <code>wanderer://</code> BROWSABLE scheme intent filter in AndroidManifest.xml for seamless standalone APK OAuth redirects.</li>
+        <li><strong>Linking Deep-Link Event Listener:</strong> Added React Native <code>Linking</code> listener to capture OAuth tokens directly from Chrome intent redirections.</li>
+        <li><strong>Google & Supabase OAuth Integration:</strong> One-tap Google Sign-in with native deep-linking support (<code>wanderer://</code>).</li>
+        <li><strong>Automatic Guest-to-User Trip Migration:</strong> Offline guest trips, places, timeline events, and notes seamlessly transfer upon sign-in.</li>
+        <li><strong>NestJS Auth Sync Engine:</strong> Backend user profile synchronization (<code>POST /api/v1/auth/sync</code>) with JWT authentication guards.</li>
+        <li><strong>Non-Blocking UI Loader & 6s Timeout:</strong> Immediate loading state transitions and AbortController timeout protection on all API calls.</li>
+        <li><strong>Auth Token Protection:</strong> Updated cache clearing to preserve Supabase authentication session tokens.</li>
+      </ul>
+    </div>
+
+    <!-- v0.2 -->
+    <div class="changelog-card" style="opacity: 0.85;">
+      <div class="changelog-header">
+        <span class="changelog-version">v0.2 (Preview - Oct 2026)</span>
+      </div>
+      <ul class="changelog-list">
+        <li>Supabase Auth & Google OAuth sign-in integration.</li>
+        <li>Automatic Guest-to-User trip data migration.</li>
+        <li>Profile section with user avatar and sign-out control.</li>
+      </ul>
+    </div>
+
+    <!-- v0.1 -->
+    <div class="changelog-card" style="opacity: 0.7;">
+      <div class="changelog-header">
+        <span class="changelog-version">v0.1 (Initial Preview - Sep 2026)</span>
       </div>
       <ul class="changelog-list">
         <li>Material 3 Mobile App complete core trip tracking engine.</li>
@@ -656,7 +696,6 @@
         <li>Trip Workspace with 4 dedicated tabs: Overview, Places, Timeline, and Notes.</li>
         <li>Visited status toggle and star ratings for captured places.</li>
         <li>AsyncStorage local-first caching for complete offline functionality.</li>
-        <li>Status filter chips (All, Active, Upcoming, Planning, Ideas, Completed, Archived).</li>
       </ul>
     </div>
   </section>
@@ -665,6 +704,7 @@
   <footer>
     <div class="footer-links">
       <a href="https://github.com/sriramkashyapks/Wanderer" target="_blank">GitHub Repository</a>
+      <a href="https://github.com/Sriramkashyapks/Wanderer-Releases" target="_blank">Releases Repository</a>
       <a href="https://github.com/sriramkashyapks/Wanderer/issues" target="_blank">Report Issue</a>
       <a href="#">Back to Top</a>
     </div>
